@@ -4,7 +4,7 @@ describe Rover do
   subject(:rover) { described_class.new(3, 3, :N, terrain) }
 
   let(:terrain) do
-    double('terrain', upper_x_coordinate: 5, upper_y_coordinate: 5)
+    instance_double('terrain', upper_x_coordinate: 5, upper_y_coordinate: 5)
   end
 
   describe '#initialize' do

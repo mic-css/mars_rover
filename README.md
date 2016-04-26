@@ -40,3 +40,14 @@ MMRMMRMRRM
 1 3 N
 
 5 1 E
+
+# TODO:
+
+* Extract Direction wrapper class
+* Figure out how to instantiate Direction class with cardinal object
+* Create Cardinal classes
+* Update Rover to use direction object
+* Extract Coordinate class
+* Implement bounds checking for Coordinate object
+* Implement a CommandParser
+* Figure out how to run with default or file read
