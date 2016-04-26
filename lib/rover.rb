@@ -3,11 +3,13 @@ class Rover
   # TODO: extract Coordinates class
   DIRECTIONS = [:N, :E, :S, :W]
 
-  attr_reader :coordinates, :direction
+  attr_reader :direction
 
-  def initialize(x_coordinate, y_coordinate, direction)
-    @coordinates = [x_coordinate, y_coordinate]
+  def initialize(x_coordinate, y_coordinate, direction, terrain)
+    @x_coordinate = x_coordinate
+    @y_coordinate = y_coordinate
     @direction = direction
+    @terrain = terrain
   end
 
   def turn_right
@@ -21,17 +23,27 @@ class Rover
   def move
     case direction
     when :N
-      coordinates[1] += 1
+      raise 'Out of bounds' if out_of_bounds?
+      @y_coordinate += 1
     when :E
-      coordinates[0] += 1
+      raise 'Out of bounds' if out_of_bounds?
+      @x_coordinate += 1
     when :S
-      coordinates[1] -= 1
+      raise 'Out of bounds' if out_of_bounds?
+      @y_coordinate -= 1
     when :W
-      coordinates[0] -= 1
+      raise 'Out of bounds' if out_of_bounds?
+      @x_coordinate -= 1
     end
   end
 
+  def coordinates
+    [x_coordinate, y_coordinate]
+  end
+
   private
+
+  attr_reader :x_coordinate, :y_coordinate, :terrain
 
   def direction_index
     DIRECTIONS.index(direction)
@@ -43,5 +55,12 @@ class Rover
 
   def left_direction
     DIRECTIONS[(direction_index - 1) % DIRECTIONS.length]
+  end
+
+  def out_of_bounds?
+    @y_coordinate + 1 > terrain.upper_y_coordinate ||
+    @y_coordinate - 1 < 0 ||
+    @x_coordinate + 1 > terrain.upper_x_coordinate ||
+    @x_coordinate - 1 < 0
   end
 end

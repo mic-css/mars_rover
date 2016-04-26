@@ -1,7 +1,11 @@
 require 'rover'
 
 describe Rover do
-  subject(:rover) { described_class.new(3, 3, :N) }
+  subject(:rover) { described_class.new(3, 3, :N, terrain) }
+
+  let(:terrain) do
+    double('terrain', upper_x_coordinate: 5, upper_y_coordinate: 5)
+  end
 
   describe '#initialize' do
     it 'initializes with a set of coordinates' do
@@ -58,9 +62,18 @@ describe Rover do
   end
 
   describe '#move' do
-    it 'moves to the adjacent coordinates in the given direction' do
-      rover.move
-      expect(rover.coordinates).to eq([3, 4])
+    context 'when moving within the terrain limit' do
+      it 'moves to the adjacent coordinates in the given direction' do
+        rover.move
+        expect(rover.coordinates).to eq([3, 4])
+      end
+    end
+
+    context 'when moving past the terrain limit' do
+      it 'raises an error' do
+        2.times { rover.move }
+        expect { rover.move }.to raise_error 'Out of bounds'
+      end
     end
   end
 end
