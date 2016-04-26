@@ -26,4 +26,11 @@ describe Rover do
       expect(rover.direction).to eq(:W)
     end
   end
+
+  describe '#move' do
+    it 'moves to the adjacent coordinates in the given direction' do
+      rover.move
+      expect(rover.coordinates).to eq([3, 4])
+    end
+  end
 end
