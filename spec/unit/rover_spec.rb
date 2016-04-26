@@ -14,16 +14,46 @@ describe Rover do
   end
 
   describe '#turn_right' do
-    it 'changes the direction by 90 degrees to the right' do
+    it 'changes the direction from North to East' do
       rover.turn_right
       expect(rover.direction).to eq(:E)
+    end
+
+    it 'changes the direction from East to South' do
+      2.times { rover.turn_right }
+      expect(rover.direction).to eq(:S)
+    end
+
+    it 'changes the direction from South to West' do
+      3.times { rover.turn_right }
+      expect(rover.direction).to eq(:W)
+    end
+
+    it 'changes the direction from West to North' do
+      4.times { rover.turn_right }
+      expect(rover.direction).to eq(:N)
     end
   end
 
   describe '#turn_left' do
-    it 'changes the direction by 90 degrees to the left' do
+    it 'changes the direction from North to West' do
       rover.turn_left
       expect(rover.direction).to eq(:W)
+    end
+
+    it 'changes the direction from West to South' do
+      2.times { rover.turn_left }
+      expect(rover.direction).to eq(:S)
+    end
+
+    it 'changes the direction from South to East' do
+      3.times { rover.turn_left }
+      expect(rover.direction).to eq(:E)
+    end
+
+    it 'changes the direction from East to North' do
+      4.times { rover.turn_left }
+      expect(rover.direction).to eq(:N)
     end
   end
 

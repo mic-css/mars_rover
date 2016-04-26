@@ -11,11 +11,11 @@ class Rover
   end
 
   def turn_right
-    @direction = DIRECTIONS[direction_index + 1]
+    @direction = right_direction
   end
 
   def turn_left
-    @direction = DIRECTIONS[direction_index - 1]
+    @direction = left_direction
   end
 
   def move
@@ -35,5 +35,13 @@ class Rover
 
   def direction_index
     DIRECTIONS.index(direction)
+  end
+
+  def right_direction
+    DIRECTIONS[(direction_index + 1) % DIRECTIONS.length]
+  end
+
+  def left_direction
+    DIRECTIONS[(direction_index - 1) % DIRECTIONS.length]
   end
 end
