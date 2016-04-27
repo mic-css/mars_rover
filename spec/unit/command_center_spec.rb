@@ -19,7 +19,7 @@ describe CommandCenter do
     let(:terrain) { double 'terrain' }
 
     it 'creates a new rover with coordinates and direction' do
-      expect(rover_klass).to receive(:new).with(terrain, 1, 1, :N)
+      expect(rover_klass).to receive(:new).with(1, 1, :N, terrain)
       command_center.deploy_rover(terrain, '1 1 N')
     end
   end

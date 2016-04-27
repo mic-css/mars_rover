@@ -1,4 +1,5 @@
-require 'terrain'
+require_relative 'terrain'
+require_relative 'rover'
 
 class CommandCenter
   def initialize(terrain_klass: Terrain, rover_klass: Rover)
@@ -18,7 +19,7 @@ class CommandCenter
     x_coordinate = coordinates[0].to_i
     y_coordinate = coordinates[1].to_i
     direction = coordinates[2].to_sym
-    @rover_klass.new(terrain, x_coordinate, y_coordinate, direction)
+    @rover_klass.new(x_coordinate, y_coordinate, direction, terrain)
   end
 
   def direct_rover(rover, directions)

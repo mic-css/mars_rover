@@ -23,16 +23,16 @@ class Rover
   def move
     case direction
     when :N
-      raise 'Out of bounds' if out_of_bounds?
+      raise 'Out of bounds' if @y_coordinate + 1 > terrain.upper_y_coordinate
       @y_coordinate += 1
     when :E
-      raise 'Out of bounds' if out_of_bounds?
+      raise 'Out of bounds' if @x_coordinate + 1 > terrain.upper_x_coordinate
       @x_coordinate += 1
     when :S
-      raise 'Out of bounds' if out_of_bounds?
+      raise 'Out of bounds' if @y_coordinate - 1 < 0
       @y_coordinate -= 1
     when :W
-      raise 'Out of bounds' if out_of_bounds?
+      raise 'Out of bounds' if @x_coordinate - 1 < 0
       @x_coordinate -= 1
     end
   end
@@ -55,12 +55,5 @@ class Rover
 
   def left_direction
     DIRECTIONS[(direction_index - 1) % DIRECTIONS.length]
-  end
-
-  def out_of_bounds?
-    @y_coordinate + 1 > terrain.upper_y_coordinate ||
-    @y_coordinate - 1 < 0 ||
-    @x_coordinate + 1 > terrain.upper_x_coordinate ||
-    @x_coordinate - 1 < 0
   end
 end
