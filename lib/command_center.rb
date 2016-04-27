@@ -20,4 +20,16 @@ class CommandCenter
     direction = coordinates[2].to_sym
     @rover_klass.new(terrain, x_coordinate, y_coordinate, direction)
   end
+
+  def direct_rover(rover, directions)
+    directions.each_char do |command|
+      if command == 'M'
+        rover.move
+      elsif command == 'R'
+        rover.turn_right
+      elsif command == 'L'
+        rover.turn_left
+      end
+    end
+  end
 end
