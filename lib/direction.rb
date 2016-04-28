@@ -3,6 +3,11 @@ class Direction
 
   attr_reader :current
 
+  def self.build_with_direction(direction)
+    raise 'Invalid direction' unless DIRECTIONS.include?(direction)
+    new(direction)
+  end
+
   def initialize(current)
     @current = current
   end
