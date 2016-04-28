@@ -1,10 +1,12 @@
 require_relative 'terrain'
 require_relative 'rover'
+require_relative 'direction'
 
 class CommandCenter
-  def initialize(terrain_klass: Terrain, rover_klass: Rover)
-    @terrain_klass = terrain_klass
-    @rover_klass = rover_klass
+  def initialize(terrain_klass: Terrain, rover_klass: Rover, direction_klass: Direction)
+    @terrain_klass    = terrain_klass
+    @rover_klass      = rover_klass
+    @direction_klass  = direction_klass
   end
 
   def plot_terrain(boundary)
@@ -18,7 +20,7 @@ class CommandCenter
     coordinates = coordinates.split(' ')
     x_coordinate = coordinates[0].to_i
     y_coordinate = coordinates[1].to_i
-    direction = coordinates[2].to_sym
+    direction = @direction_klass.new(coordinates[2].to_sym)
     @rover_klass.new(x_coordinate, y_coordinate, direction, terrain)
   end
 

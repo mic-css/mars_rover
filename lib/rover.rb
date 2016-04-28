@@ -11,15 +11,15 @@ class Rover
   end
 
   def turn_right
-    @direction = right_direction
+    direction.right
   end
 
   def turn_left
-    @direction = left_direction
+    direction.left
   end
 
   def move
-    case direction
+    case current_direction
     when :N
       raise 'Out of bounds' if @y_coordinate + 1 > terrain.upper_y_coordinate
       @y_coordinate += 1
@@ -43,15 +43,7 @@ class Rover
 
   attr_reader :x_coordinate, :y_coordinate, :terrain
 
-  def direction_index
-    DIRECTIONS.index(direction)
-  end
-
-  def right_direction
-    DIRECTIONS[(direction_index + 1) % DIRECTIONS.length]
-  end
-
-  def left_direction
-    DIRECTIONS[(direction_index - 1) % DIRECTIONS.length]
+  def current_direction
+    direction.current
   end
 end

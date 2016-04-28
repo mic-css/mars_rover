@@ -4,11 +4,17 @@ require 'rover'
 
 describe CommandCenter do
   subject(:command_center) do
-    described_class.new(terrain_klass: terrain_klass, rover_klass: rover_klass)
+    described_class.new(
+      terrain_klass:    terrain_klass,
+      rover_klass:      rover_klass,
+      direction_klass:  direction_klass
+    )
   end
 
-  let(:terrain_klass) { double('terrain_klass', new: nil) }
-  let(:rover_klass) { double('rover_klass', new: nil) }
+  let(:terrain_klass)   { double('terrain_klass', new: nil) }
+  let(:rover_klass)     { double('rover_klass', new: nil) }
+  let(:direction_klass) { double('direction_klass', new: direction) }
+  let(:direction)       { instance_double 'direction' }
 
   describe '#plot_terrain' do
     it 'creates a new terrain with upper boundaries' do
@@ -18,10 +24,10 @@ describe CommandCenter do
   end
 
   describe '#deploy_rover' do
-    let(:terrain) { instance_double 'terrain' }
+    let(:terrain)   { instance_double 'terrain' }
 
     it 'creates a new rover with coordinates and direction' do
-      expect(rover_klass).to receive(:new).with(1, 1, :N, terrain)
+      expect(rover_klass).to receive(:new).with(1, 1, direction, terrain)
       command_center.deploy_rover(terrain, '1 1 N')
     end
   end
