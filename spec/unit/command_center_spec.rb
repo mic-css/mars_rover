@@ -1,4 +1,6 @@
 require 'command_center'
+require 'terrain'
+require 'rover'
 
 describe CommandCenter do
   subject(:command_center) do
@@ -16,7 +18,7 @@ describe CommandCenter do
   end
 
   describe '#deploy_rover' do
-    let(:terrain) { double 'terrain' }
+    let(:terrain) { instance_double 'terrain' }
 
     it 'creates a new rover with coordinates and direction' do
       expect(rover_klass).to receive(:new).with(1, 1, :N, terrain)
@@ -25,7 +27,7 @@ describe CommandCenter do
   end
 
   describe '#direct_rover' do
-    let(:rover) { double('rover', move: nil, turn_right: nil, turn_left: nil) }
+    let(:rover) { instance_double('rover', move: nil, turn_right: nil, turn_left: nil) }
 
     it 'delegates the "move" command to the rover' do
       expect(rover).to receive(:move)
