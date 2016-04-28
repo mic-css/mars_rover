@@ -3,12 +3,16 @@ class Direction
 
   attr_reader :current
 
-  def initialize(current: :N)
+  def initialize(current)
     @current = current
   end
 
   def right
     @current = next_direction_right
+  end
+
+  def left
+    @current = next_direction_left
   end
 
   private
