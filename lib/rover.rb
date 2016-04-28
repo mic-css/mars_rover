@@ -1,6 +1,4 @@
 class Rover
-  # TODO: extract Direction class
-  # TODO: extract Coordinates class
   DIRECTIONS = [:N, :E, :S, :W]
 
   attr_reader :direction

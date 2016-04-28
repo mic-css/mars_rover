@@ -12,7 +12,7 @@ describe 'Deploying multiple rovers' do
     rover_2 = command_center.deploy_rover(terrain, '3 3 E')
     command_center.direct_rover(rover_2, 'MMRMMRMRRM')
 
-    expect(rover_1.coordinates).to eq([1, 3]) #N
-    expect(rover_2.coordinates).to eq([5, 1]) #E
+    expect(rover_1.coordinates).to eq([1, 3])
+    expect(rover_2.coordinates).to eq([5, 1])
   end
 end
