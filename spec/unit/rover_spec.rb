@@ -15,7 +15,7 @@ describe Rover do
   end
 
   let(:terrain) do
-    instance_double('terrain', upper_x_coordinate: 5, upper_y_coordinate: 5)
+    instance_double('terrain', x_boundary: 5, y_boundary: 5)
   end
 
   describe '#turn_right' do

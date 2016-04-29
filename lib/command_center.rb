@@ -11,10 +11,9 @@ class CommandCenter
   end
 
   def plot_terrain(boundary)
-    boundary = boundary.split(' ').map(&:to_i)
-    upper_x_coordinate = boundary[0]
-    upper_y_coordinate = boundary[1]
-    @terrain_klass.new(upper_x_coordinate, upper_y_coordinate)
+    boundary = boundary.split(' ')
+    boundary_point = parse_point(boundary)
+    @terrain_klass.new(boundary_point)
   end
 
   def deploy_rover(terrain, coordinates)

@@ -1,15 +1,18 @@
 require 'terrain'
+require 'point'
 
 describe Terrain do
-  subject(:terrain) { described_class.new(5, 5) }
+  subject(:terrain) { described_class.new(point) }
+
+  let(:point) { instance_double('point', x_coordinate: 5, y_coordinate: 5) }
 
   describe '#initialize' do
-    it 'initializes with an upper x-coordinate' do
-      expect(terrain.upper_x_coordinate).to eq(5)
+    it 'initializes with an x-coordinate boundary' do
+      expect(terrain.x_boundary).to eq(5)
     end
 
-    it 'initializes with an upper y-coordinate' do
-      expect(terrain.upper_y_coordinate).to eq(5)
+    it 'initializes with a y-coordinate boundary' do
+      expect(terrain.y_boundary).to eq(5)
     end
   end
 end

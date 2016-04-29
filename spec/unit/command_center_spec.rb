@@ -22,7 +22,7 @@ describe CommandCenter do
 
   describe '#plot_terrain' do
     it 'creates a new terrain with upper boundaries' do
-      expect(terrain_klass).to receive(:new).with(5, 5)
+      expect(terrain_klass).to receive(:new).with(point)
       command_center.plot_terrain('5 5')
     end
   end
