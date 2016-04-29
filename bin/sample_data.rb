@@ -2,8 +2,6 @@
 
 require './lib/command_center'
 
-command_center = CommandCenter.new
-
 puts %q(
 Input:
 5 5
@@ -12,6 +10,7 @@ LMLMLMLMM
 3 3 E
 MMRMMRMRRM)
 
+command_center = CommandCenter.new
 terrain = command_center.plot_terrain('5 5')
 
 rover_1 = command_center.deploy_rover(terrain, '1 2 N')
