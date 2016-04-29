@@ -15,6 +15,10 @@ class West
     @_south ||= south_klass.new
   end
 
+  def to_sym
+    :W
+  end
+
   def forward(point, terrain)
     point.decrease_x(terrain)
   end

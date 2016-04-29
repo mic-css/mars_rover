@@ -25,8 +25,4 @@ class Point
     raise 'Out of bounds' if y_coordinate == 0
     @y_coordinate -= 1
   end
-
-  private
-
-  
 end

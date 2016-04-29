@@ -34,4 +34,10 @@ describe East do
       east.forward(point, terrain)
     end
   end
+
+  describe '#to_sym' do
+    it 'overrides #to_sym to display the cardinal point as a symbol' do
+      expect(east.to_sym).to eq(:E)
+    end
+  end
 end

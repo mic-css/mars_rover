@@ -19,6 +19,10 @@ class East
     point.increase_x(terrain)
   end
 
+  def to_sym
+    :E
+  end
+
   private
 
   attr_reader :south_klass, :north_klass

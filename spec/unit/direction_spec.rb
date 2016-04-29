@@ -8,11 +8,6 @@ describe Direction do
   describe '#self.build' do
     let(:direction_klass) { described_class }
 
-    xit 'creates a new instance from the given cardinal points' do
-      direction = direction_klass.build_with_direction(:S)
-      expect(direction.current).to eq(:S)
-    end
-
     context 'when passed an incorrect direction' do
       it 'raises an error' do
         expect { direction_klass.build_with_direction(:foo) }

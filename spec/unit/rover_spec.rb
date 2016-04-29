@@ -38,4 +38,11 @@ describe Rover do
       rover.move
     end
   end
+
+  describe '#position' do
+    xit 'returns the current coordinates and direction' do
+      expect(rover.position)
+        .to eq([point.x_coordinate, point.y_coordinate, north])
+    end
+  end
 end

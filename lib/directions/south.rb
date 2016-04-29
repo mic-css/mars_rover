@@ -19,6 +19,10 @@ class South
     point.decrease_y(terrain)
   end
 
+  def to_sym
+    :S
+  end
+
   private
 
   attr_reader :west_klass, :east_klass
