@@ -1,6 +1,7 @@
 require_relative 'terrain'
 require_relative 'rover'
 require_relative 'direction'
+require_relative 'point'
 
 class CommandCenter
   def initialize(terrain_klass: Terrain, rover_klass: Rover, point_klass: Point, direction_klass: Direction)
@@ -45,6 +46,6 @@ class CommandCenter
 
   def parse_direction(coordinates)
     direction = coordinates[2].to_sym
-    @direction_klass.new(direction)
+    @direction_klass.build_with_direction(direction)
   end
 end

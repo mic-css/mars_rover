@@ -6,19 +6,19 @@ class Point
     @y_coordinate = y_coordinate
   end
 
-  def increase_x
+  def increase_x(boundary_point)
     @x_coordinate += 1
   end
 
-  def decrease_x
+  def decrease_x(boundary_point)
     @x_coordinate -= 1
   end
 
-  def increase_y
+  def increase_y(boundary_point)
     @y_coordinate += 1
   end
 
-  def decrease_y
+  def decrease_y(boundary_point)
     @y_coordinate -= 1
   end
 end

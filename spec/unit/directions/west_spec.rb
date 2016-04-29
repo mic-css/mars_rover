@@ -1,6 +1,7 @@
 require 'directions/west'
 require 'directions/north'
 require 'directions/south'
+require 'point'
 
 describe West do
   subject(:west) do
@@ -21,6 +22,16 @@ describe West do
   describe '#left' do
     it 'returns an instance of South' do
       expect(west.left).to eq(south)
+    end
+  end
+
+  describe '#forward' do
+    let(:point) { instance_double('point', decrease_x: nil) }
+    let(:terrain) { double('terrain') }
+
+    it 'calls #decrease_x on the given point with the given terrain' do
+      expect(point).to receive(:decrease_x).with(terrain)
+      west.forward(point, terrain)
     end
   end
 end

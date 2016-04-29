@@ -16,20 +16,7 @@ class Rover
   end
 
   def move
-    case current_direction
-    when :N
-      raise 'Out of bounds' if y_coordinate + 1 > terrain.x_boundary
-      point.increase_y
-    when :E
-      raise 'Out of bounds' if x_coordinate + 1 > terrain.y_boundary
-      point.increase_x
-    when :S
-      raise 'Out of bounds' if y_coordinate - 1 < 0
-      point.decrease_y
-    when :W
-      raise 'Out of bounds' if x_coordinate - 1 < 0
-      point.decrease_x
-    end
+    direction.forward(point, terrain.boundary_point)
   end
 
   def coordinates

@@ -2,6 +2,7 @@ require 'rover'
 require 'point'
 require 'direction'
 require 'terrain'
+require 'directions/north'
 
 describe Rover do
   subject(:rover) { described_class.new(point, direction, terrain) }
@@ -11,12 +12,11 @@ describe Rover do
   end
 
   let(:direction) do
-    instance_double('direction', current: :N, right: :E, left: :W)
+    instance_double('direction', current: north, forward: nil, right: nil, left: nil)
   end
-
-  let(:terrain) do
-    instance_double('terrain', x_boundary: 5, y_boundary: 5)
-  end
+  let(:north) { instance_double('north') }
+  let(:terrain) { instance_double('terrain', boundary_point: boundary_point) }
+  let(:boundary_point) { instance_double('point') }
 
   describe '#turn_right' do
     it 'calls #right on the direction' do
@@ -33,20 +33,9 @@ describe Rover do
   end
 
   describe '#move' do
-    context 'when moving within the terrain limit' do
-      it 'calls #forward on the current point' do
-        expect(point).to receive(:increase_y)
-        rover.move
-      end
-    end
-
-    context 'when moving past the terrain limit' do
-      let(:eastern_direction) { instance_double('direction', current: :E) }
-      let(:border_rover) { described_class.new(point, eastern_direction, terrain) }
-
-      it 'raises an error' do
-        expect { border_rover.move }.to raise_error 'Out of bounds'
-      end
+    it 'calls #forward on the direction with current point and terrain' do
+      expect(direction).to receive(:forward).with(point, boundary_point)
+      rover.move
     end
   end
 end

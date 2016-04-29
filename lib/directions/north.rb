@@ -15,6 +15,10 @@ class North
     @_west ||= west_klass.new
   end
 
+  def forward(point, terrain)
+    point.increase_y(terrain)
+  end
+
   private
 
   attr_reader :east_klass, :west_klass

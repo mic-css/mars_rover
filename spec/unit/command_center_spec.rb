@@ -17,7 +17,7 @@ describe CommandCenter do
   let(:rover_klass)     { double('rover_klass', new: nil) }
   let(:point_klass)     { double('point_klass', new: point) }
   let(:point)           { instance_double('point') }
-  let(:direction_klass) { double('direction_klass', new: direction) }
+  let(:direction_klass) { double('direction_klass', build_with_direction: direction) }
   let(:direction)       { instance_double 'direction' }
 
   describe '#plot_terrain' do

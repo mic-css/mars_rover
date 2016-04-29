@@ -1,4 +1,6 @@
 class Terrain
+  attr_reader :boundary_point
+  
   def initialize(boundary_point)
     @boundary_point = boundary_point
   end
@@ -10,8 +12,4 @@ class Terrain
   def y_boundary
     boundary_point.y_coordinate
   end
-
-  private
-
-  attr_reader :boundary_point
 end

@@ -1,12 +1,14 @@
 require 'direction'
 
 describe Direction do
-  subject(:direction) { described_class.new(:N) }
+  subject(:direction) { described_class.new(current_direction) }
+
+  let(:current_direction) { double('current_direction', right: nil, left: nil) }
 
   describe '#self.build' do
     let(:direction_klass) { described_class }
 
-    it 'creates a new instance from the given cardinal points' do
+    xit 'creates a new instance from the given cardinal points' do
       direction = direction_klass.build_with_direction(:S)
       expect(direction.current).to eq(:S)
     end
@@ -20,46 +22,26 @@ describe Direction do
   end
 
   describe '#right' do
-    it 'changes the direction from North to East' do
+    it 'delegates #right to the current direction' do
+      expect(current_direction).to receive(:right)
       direction.right
-      expect(direction.current).to eq(:E)
-    end
-
-    it 'changes the direction from East to South' do
-      2.times { direction.right }
-      expect(direction.current).to eq(:S)
-    end
-
-    it 'changes the direction from South to West' do
-      3.times { direction.right }
-      expect(direction.current).to eq(:W)
-    end
-
-    it 'changes the direction from West to North' do
-      4.times { direction.right }
-      expect(direction.current).to eq(:N)
     end
   end
 
   describe '#left' do
-    it 'changes the direction from North to West' do
+    it 'delegates #left to the current direction' do
+      expect(current_direction).to receive(:left)
       direction.left
-      expect(direction.current).to eq(:W)
     end
+  end
 
-    it 'changes the direction from West to South' do
-      2.times { direction.left }
-      expect(direction.current).to eq(:S)
-    end
+  describe '#forward' do
+    let(:point) { double('point') }
+    let(:terrain) { double('terrain') }
 
-    it 'changes the direction from South to East' do
-      3.times { direction.left }
-      expect(direction.current).to eq(:E)
-    end
-
-    it 'changes the direction from East to North' do
-      4.times { direction.left }
-      expect(direction.current).to eq(:N)
+    it 'delegates to the current direction with a point and a terrain' do
+      expect(current_direction).to receive(:forward).with(point, terrain)
+      direction.forward(point, terrain)
     end
   end
 end
