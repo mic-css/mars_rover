@@ -19,7 +19,7 @@ class CommandCenter
   def deploy_rover(terrain, coordinates)
     coordinates = coordinates.split(' ')
     point = parse_point(coordinates)
-    direction = @direction_klass.new(coordinates[2].to_sym)
+    direction = parse_direction(coordinates)
     @rover_klass.new(point, direction, terrain)
   end
 
@@ -41,5 +41,10 @@ class CommandCenter
     x_coordinate = coordinates[0].to_i
     y_coordinate = coordinates[1].to_i
     @point_klass.new(x_coordinate, y_coordinate)
+  end
+
+  def parse_direction(coordinates)
+    direction = coordinates[2].to_sym
+    @direction_klass.new(direction)
   end
 end
