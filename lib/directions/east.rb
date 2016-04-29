@@ -2,20 +2,20 @@ require_relative 'south'
 require_relative 'north'
 
 class East
-  def initialize(south: South.new, north: North.new)
-    @south = south
-    @north = north
+  def initialize(south_klass: South, north_klass: North)
+    @south_klass = south_klass
+    @north_klass = north_klass
   end
 
   def right
-    south
+    @_south ||= south_klass.new
   end
 
   def left
-    north
+    @_north ||= north_klass.new
   end
 
   private
 
-  attr_reader :south, :north
+  attr_reader :south_klass, :north_klass
 end

@@ -3,8 +3,12 @@ require 'directions/north'
 require 'directions/south'
 
 describe West do
-  subject(:west) { described_class.new(north: north, south: south) }
+  subject(:west) do
+    described_class.new(north_klass: north_klass, south_klass: south_klass)
+  end
 
+  let(:north_klass) { double('north_klass', new: north) }
+  let(:south_klass) { double('south_klass', new: south) }
   let(:north) { instance_double('north') }
   let(:south) { instance_double('south') }
 

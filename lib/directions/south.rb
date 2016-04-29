@@ -1,18 +1,21 @@
+require_relative 'west'
+require_relative 'east'
+
 class South
-  def initialize(west: West.new, east: East.new)
-    @west = west
-    @east = east
+  def initialize(west_klass: West, east_klass: East)
+    @west_klass = west_klass
+    @east_klass = east_klass
   end
 
   def right
-    west
+    @_west ||= west_klass.new
   end
 
   def left
-    east
+    @_east ||= east_klass.new
   end
 
   private
 
-  attr_reader :west, :east
+  attr_reader :west_klass, :east_klass
 end
