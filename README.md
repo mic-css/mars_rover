@@ -4,6 +4,10 @@ Welcome to the NASA Mars Rover Command Center! From here you can deploy new rove
 
 ## Instructions
 
+#### Build
+
+Please run `bundle` to install or update any dependencies.
+
 #### Run
 
 To run the program, run `ruby bin/run.rb`. The program runs in the command line and will prompt you for the following input as strings:
