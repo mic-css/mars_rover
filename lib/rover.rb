@@ -19,8 +19,8 @@ class Rover
     direction.forward(point, terrain.boundary_point)
   end
 
-  def coordinates
-    [x_coordinate, y_coordinate]
+  def position
+    [x_coordinate, y_coordinate, current_direction]
   end
 
   private
@@ -28,7 +28,7 @@ class Rover
   attr_reader :point, :terrain
 
   def current_direction
-    direction.current
+    direction.current.to_sym
   end
 
   def x_coordinate

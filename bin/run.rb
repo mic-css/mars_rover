@@ -23,5 +23,5 @@ while true do
   puts 'Enter rover directions:'
   command_center.direct_rover(rover, capture_input)
 
-  puts "Rover coordinates: #{rover.coordinates}"
+  puts "Rover position: #{rover.position.map(&:to_s).join(' ')}"
 end

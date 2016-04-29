@@ -14,7 +14,7 @@ describe Rover do
   let(:direction) do
     instance_double('direction', current: north, forward: nil, right: nil, left: nil)
   end
-  let(:north) { instance_double('north') }
+  let(:north) { instance_double('north', to_sym: :N) }
   let(:terrain) { instance_double('terrain', boundary_point: boundary_point) }
   let(:boundary_point) { instance_double('point') }
 
@@ -40,9 +40,9 @@ describe Rover do
   end
 
   describe '#position' do
-    xit 'returns the current coordinates and direction' do
+    it 'returns the current coordinates and direction' do
       expect(rover.position)
-        .to eq([point.x_coordinate, point.y_coordinate, north])
+        .to eq([point.x_coordinate, point.y_coordinate, north.to_sym])
     end
   end
 end
