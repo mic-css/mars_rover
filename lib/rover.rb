@@ -19,8 +19,8 @@ class Rover
     direction.forward(point, terrain.boundary_point)
   end
 
-  def coordinates
-    [x_coordinate, y_coordinate]
+  def position
+    [x_coordinate, y_coordinate, current_direction.to_sym]
   end
 
   private
