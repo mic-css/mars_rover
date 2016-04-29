@@ -1,42 +1,61 @@
 # Mars Rover
 
-## Problem
-A squad of robotic rovers are to be landed by NASA on a plateau on Mars. This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.
+Welcome to the NASA Mars Rover Command Center! From here you can deploy new rovers onto specific areas of the Mars surface and direct their exploration.
 
+## Instructions
 
-A rover’s position and location is represented by a combination of x and y co-ordinates and a letter representing one of the four cardinal compass points. The plateau is divided up into a grid to simplify navigation. An example position might be 0, 0, N, which means the rover is in the bottom left corner and facing North.
+#### Run
 
+To run the program, run `ruby bin/run.rb`. The program runs in the command line and will prompt you for the following input as strings:
+1. The upper-right hand coordinates of the area to be explored
+2. The coordinates and direction to deploy a new rover
+3. Directions for the rover, either `M`, `R` or `L` to move forward, rotate 90 degrees right, or rotate 90 degrees left, respectively.
 
-In order to control a rover, NASA sends a simple string of letters. The possible letters are ‘L’, ‘R’ and ‘M’. ‘L’ and ‘R’ makes the rover spin 90 degrees left or right respectively, without moving from its current spot. ‘M’ means move forward one grid point, and maintain the same heading.
-Assume that the square directly North from (x, y) is (x, y+1).
+You can then repeat steps 2 and 3 to deploy new rovers.
+You can exit the program at any time by typing `exit`.
 
+Example:
+```
+$ ruby bin/run.rb
 
-#### Input:
-The first line of input is the upper-right coordinates of the plateau, the lower-left coordinates are assumed to be 0,0.
+# Welcome to the NASA Mars Rover command center.
+# Type "exit" at any time to quit the program.
+# Enter terrain boundary:
 
+$ 5 5
 
-The rest of the input is information pertaining to the rovers that have been deployed. Each rover has two lines of input. The first line gives the rover’s position, and the second line is a series of instructions telling the rover how to explore the plateau.
+# Enter new rover coordinates:
 
+$ 3 3 N
 
-The position is made up of two integers and a letter separated by spaces, corresponding to the x and y co-ordinates and the rover’s orientation.
-Each rover will be finished sequentially, which means that the second rover won’t start to move until the first one has finished moving.
+# Enter rover directions:
 
+$ LMMLMM
 
-#### Output:
-The output for each rover should be its final co-ordinates and heading.
+# Rover position: 1 1 S
+```
 
-#### Test Input:
-5 5
+#### Sample data
 
-1 2 N
+To run the sample data, run `bin/sample_data.rb`. This will run the program with the supplied sample data:
 
-LMLMLMLMM
+```
+$ ruby bin/sample_data.rb
 
-3 3 E
+# Input:
+# 5 5
+# 1 2 N
+# LMLMLMLMM
+# 3 3 E
+# MMRMMRMRRM
 
-MMRMMRMRRM
+# Output:
+# 1 3 N
+# 5 1 E
+```
 
-#### Expected Output:
-1 3 N
+#### Test
 
-5 1 E
+To run the tests, run `rspec`. This will output all the test descriptions in an easily readable format.
+
+The tests use **SimpleCov** to check test coverage. The final line of the test output shows the coverage level of the tests. Once you have run the tests once, you can also open `coverage/index.html` in your browser to inspect the code coverage in more detail.
