@@ -1,11 +1,13 @@
 require 'command_center'
 require 'terrain'
 require 'rover'
+require 'point'
 
 describe CommandCenter do
   subject(:command_center) do
     described_class.new(
       terrain_klass:    terrain_klass,
+      point_klass:      point_klass,
       rover_klass:      rover_klass,
       direction_klass:  direction_klass
     )
@@ -13,6 +15,8 @@ describe CommandCenter do
 
   let(:terrain_klass)   { double('terrain_klass', new: nil) }
   let(:rover_klass)     { double('rover_klass', new: nil) }
+  let(:point_klass)     { double('point_klass', new: point) }
+  let(:point)           { instance_double('point') }
   let(:direction_klass) { double('direction_klass', new: direction) }
   let(:direction)       { instance_double 'direction' }
 
@@ -27,7 +31,7 @@ describe CommandCenter do
     let(:terrain)   { instance_double 'terrain' }
 
     it 'creates a new rover with coordinates and direction' do
-      expect(rover_klass).to receive(:new).with(1, 1, direction, terrain)
+      expect(rover_klass).to receive(:new).with(point, direction, terrain)
       command_center.deploy_rover(terrain, '1 1 N')
     end
   end
